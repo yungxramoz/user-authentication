@@ -16,7 +16,10 @@
     </v-main>
 
     <v-footer app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-spacer></v-spacer>
+      <v-subheader>
+        Sandro Gerber &copy; {{ new Date().getFullYear() }}
+      </v-subheader>
     </v-footer>
   </v-app>
 </template>
