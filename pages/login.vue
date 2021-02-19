@@ -8,16 +8,24 @@
     <v-row no-gutters>
       <v-col class="text-center">
         <yr-text-field
+          v-model="form.fields.username"
           name="username"
           label="Username"
           id="username"
           prepend-icon="mdi-account"
+          required
         ></yr-text-field>
       </v-col>
     </v-row>
     <v-row no-gutters>
       <v-col class="text-center">
-        <yr-password-field name="password" label="Password" id="password">
+        <yr-password-field
+          v-model="form.fields.password"
+          name="password"
+          label="Password"
+          id="password"
+          required
+        >
         </yr-password-field>
       </v-col>
     </v-row>
@@ -47,9 +55,19 @@
 import Vue from 'vue'
 import { Component } from 'vue-class-decorator'
 
+import FormDefinition from '~/models/form-definition'
+
 import YrBtn from '../components/atoms/YrBtn.vue'
 import YrTextField from '../components/atoms/YrTextField.vue'
 import YrPasswordField from '../components/molecules/YrPasswordField.vue'
+
+interface Form extends FormDefinition {
+  valid: false
+  fields: {
+    username: string
+    password: string
+  }
+}
 
 @Component({
   components: {
@@ -58,5 +76,13 @@ import YrPasswordField from '../components/molecules/YrPasswordField.vue'
     YrPasswordField,
   },
 })
-export default class Login extends Vue {}
+export default class Login extends Vue {
+  form: Form = {
+    valid: false,
+    fields: {
+      username: '',
+      password: '',
+    },
+  }
+}
 </script>
