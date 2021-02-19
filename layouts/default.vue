@@ -1,13 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app>
-      <v-tabs color="primary" right>
-        <v-tab v-for="(item, i) in items" :key="i" :to="item.to" nuxt>
-          <v-icon left>{{ item.icon }}</v-icon>
-          {{ item.title }}
-        </v-tab>
-      </v-tabs>
-    </v-app-bar>
+    <yr-nuxt-navigtion-bar :items="items" />
 
     <v-main>
       <v-container>
@@ -29,7 +22,13 @@ import Vue from 'vue'
 import { Component } from 'vue-class-decorator'
 import NuxtLink from '../models/nuxt-link'
 
-@Component
+import YrNuxtNavigtionBar from '../components/organisms/YrNuxtNavigtionBar.vue'
+
+@Component({
+  components: {
+    YrNuxtNavigtionBar,
+  },
+})
 export default class Default extends Vue {
   private items: NuxtLink[] = [
     {
