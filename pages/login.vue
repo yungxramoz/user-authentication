@@ -2,25 +2,30 @@
   <v-container pa-6>
     <v-row no-gutters>
       <v-col class="text-center">
-        <text-field
+        <h1 class="mb-5">Login</h1>
+      </v-col>
+    </v-row>
+    <v-row no-gutters>
+      <v-col class="text-center">
+        <yr-text-field
           name="username"
           label="Username"
           id="username"
           color="secondary"
           prepend-icon="mdi-account"
           @click:append="dostuf"
-        ></text-field>
+        ></yr-text-field>
       </v-col>
     </v-row>
     <v-row no-gutters>
       <v-col class="text-center">
-        <password-field name="password" label="Password" id="password">
-        </password-field>
+        <yr-password-field name="password" label="Password" id="password">
+        </yr-password-field>
       </v-col>
     </v-row>
     <v-row no-gutters>
       <v-col class="text-center">
-        <v-btn width="180px" color="primary">Login</v-btn>
+        <yr-btn width="180px">Login</yr-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -44,13 +49,15 @@
 import Vue from 'vue'
 import { Component } from 'vue-class-decorator'
 
-import TextField from '../components/atoms/TextField.vue'
-import PasswordField from '../components/molecules/PasswordField.vue'
+import YrBtn from '../components/atoms/YrBtn.vue'
+import YrTextField from '../components/atoms/YrTextField.vue'
+import YrPasswordField from '../components/molecules/YrPasswordField.vue'
 
 @Component({
   components: {
-    TextField,
-    PasswordField,
+    YrBtn,
+    YrTextField,
+    YrPasswordField,
   },
 })
 export default class Login extends Vue {
