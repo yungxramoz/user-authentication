@@ -36,8 +36,8 @@ export default class Default extends Vue {
     },
     {
       icon: 'mdi-account-circle',
-      title: 'User',
-      to: '/user',
+      title: 'Login',
+      to: '/login',
     },
   ]
 }
