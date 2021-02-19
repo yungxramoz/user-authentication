@@ -24,11 +24,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'vue-class-decorator'
+import NuxtLink from '../models/nuxt-link'
 
 @Component
 export default class Default extends Vue {
-  //TODO type
-  private items: unknown = [
+  private items: NuxtLink[] = [
     {
       icon: 'mdi-home',
       title: 'Home',
