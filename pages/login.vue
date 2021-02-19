@@ -60,11 +60,5 @@ import YrPasswordField from '../components/molecules/YrPasswordField.vue'
     YrPasswordField,
   },
 })
-export default class Login extends Vue {
-  private showPassword: boolean = false
-
-  dostuf() {
-    console.log('done')
-  }
-}
+export default class Login extends Vue {}
 </script>
