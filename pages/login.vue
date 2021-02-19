@@ -11,9 +11,7 @@
           name="username"
           label="Username"
           id="username"
-          color="secondary"
           prepend-icon="mdi-account"
-          @click:append="dostuf"
         ></yr-text-field>
       </v-col>
     </v-row>
