@@ -18,7 +18,7 @@
     <v-footer app>
       <v-spacer></v-spacer>
       <v-subheader>
-        Sandro Gerber &copy; {{ new Date().getFullYear() }}
+        &copy; {{ new Date().getFullYear() }} Sandro Gerber
       </v-subheader>
     </v-footer>
   </v-app>
