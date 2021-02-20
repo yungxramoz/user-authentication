@@ -1,103 +1,70 @@
 <template>
-  <v-container pa-6>
-    <v-row no-gutters>
-      <v-col class="text-center">
-        <h1 class="mb-5">Create new Account</h1>
-      </v-col>
-    </v-row>
-
-    <v-form lazy-validation v-model="form.valid">
-      <v-row no-gutters>
-        <v-col class="text-center">
-          <yr-text-field
-            v-model="form.fields.firstname"
-            name="firsname"
-            label="Firstname*"
-            id="firstname"
-            counter="50"
-            hint="*required"
-            required
-            :rules="form.rules.lastname"
-          ></yr-text-field>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col class="text-center">
-          <yr-text-field
-            v-model="form.fields.lastname"
-            name="lastname"
-            label="Lastname*"
-            id="lastname"
-            counter="50"
-            hint="*required"
-            required
-            :rules="form.rules.lastname"
-          ></yr-text-field>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col class="text-center">
-          <yr-text-field
-            v-model="form.fields.username"
-            name="username"
-            label="Username*"
-            id="username"
-            counter="20"
-            hint="*required"
-            required
-            :rules="form.rules.username"
-          ></yr-text-field>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col class="text-center">
-          <yr-password-field
-            v-model="form.fields.password"
-            name="password"
-            label="Password"
-            id="password"
-            no-prepend-icon="true"
-            :rules="form.rules.password"
-          >
-          </yr-password-field>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col class="text-center">
-          <yr-password-field
-            v-model="form.fields.confirmPassword"
-            name="confirm-password"
-            label="Confirm Password"
-            id="confirm-password"
-            no-prepend-icon="true"
-            :rules="form.rules.confirmPassword"
-          >
-          </yr-password-field>
-        </v-col>
-      </v-row>
-      <v-row no-gutters>
-        <v-col class="text-center">
+  <yr-form title="Create new Account">
+    <template #form>
+      <v-form lazy-validation v-model="form.valid">
+        <yr-text-field
+          v-model="form.fields.firstname"
+          name="firsname"
+          label="Firstname"
+          id="firstname"
+          counter="50"
+          hint="*required"
+          required
+          :rules="form.rules.lastname"
+        ></yr-text-field>
+        <yr-text-field
+          v-model="form.fields.lastname"
+          name="lastname"
+          label="Lastname"
+          id="lastname"
+          counter="50"
+          hint="*required"
+          required
+          :rules="form.rules.lastname"
+        ></yr-text-field>
+        <yr-text-field
+          v-model="form.fields.username"
+          name="username"
+          label="Username"
+          id="username"
+          counter="20"
+          hint="*required"
+          required
+          :rules="form.rules.username"
+        ></yr-text-field>
+        <yr-password-field
+          v-model="form.fields.password"
+          name="password"
+          label="Password"
+          id="password"
+          no-prepend-icon="true"
+          :rules="form.rules.password"
+        >
+        </yr-password-field>
+        <yr-password-field
+          v-model="form.fields.confirmPassword"
+          name="confirm-password"
+          label="Confirm Password"
+          id="confirm-password"
+          no-prepend-icon="true"
+          :rules="form.rules.confirmPassword"
+        >
+        </yr-password-field>
+        <div class="text-center">
           <yr-btn type="submit" width="180px" :disabled="!form.valid">
             Sign up
           </yr-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-row no-gutters>
-            <v-divider></v-divider>
-          </v-row>
-          <v-row no-gutters>
-            <v-spacer></v-spacer>
-            <span class="caption"
-              >Already have an account?
-              <nuxt-link to="/login">Login here</nuxt-link>.
-            </span>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-form>
-  </v-container>
+        </div>
+      </v-form>
+    </template>
+
+    <template #footer>
+      <v-spacer></v-spacer>
+      <span class="caption"
+        >Already have an account? <nuxt-link to="/login">Login here</nuxt-link>.
+      </span>
+    </template>
+  </yr-form>
 </template>
 
 <script lang="ts">
@@ -115,6 +82,7 @@ import {
 import YrBtn from '../components/atoms/YrBtn.vue'
 import YrTextField from '../components/atoms/YrTextField.vue'
 import YrPasswordField from '../components/molecules/YrPasswordField.vue'
+import YrForm from '../components/templates/YrForm.vue'
 
 interface Form extends FormDefinition {
   valid: false
@@ -139,6 +107,7 @@ interface Form extends FormDefinition {
     YrBtn,
     YrTextField,
     YrPasswordField,
+    YrForm,
   },
 })
 export default class Registration extends Vue {
