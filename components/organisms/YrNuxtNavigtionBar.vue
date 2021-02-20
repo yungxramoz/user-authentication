@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-class-decorator'
+import { Component, Prop } from 'nuxt-property-decorator'
 
 import YrNuxtIconTab from '../molecules/YrNuxtIconTab.vue'
 import YrAppBar from '../templates/YrAppBar.vue'

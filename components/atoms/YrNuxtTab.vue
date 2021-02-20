@@ -1,7 +1,7 @@
 <script lang="ts">
 import { VTab } from 'vuetify/lib'
 
-import { Component, Prop } from 'vue-class-decorator'
+import { Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class YrNuxtTab extends VTab {

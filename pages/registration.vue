@@ -69,7 +69,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component } from 'vue-class-decorator'
+import { Component } from 'nuxt-property-decorator'
 
 import FormDefinition from '../models/form-definition'
 import {

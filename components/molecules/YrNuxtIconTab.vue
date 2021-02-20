@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-class-decorator'
+import { Component, Prop } from 'nuxt-property-decorator'
 
 import YrNuxtTab from '../atoms/YrNuxtTab.vue'
 import YrIcon from '../atoms/YrIcon.vue'

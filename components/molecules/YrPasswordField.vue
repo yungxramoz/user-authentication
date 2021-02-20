@@ -12,7 +12,7 @@
 <script lang="ts">
 import YrTextField from '../atoms/YrTextField.vue'
 
-import { Component, Prop } from 'vue-class-decorator'
+import { Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class YrPasswordField extends YrTextField {

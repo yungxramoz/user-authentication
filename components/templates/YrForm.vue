@@ -18,7 +18,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { Component, Prop } from 'vue-class-decorator'
+import { Component, Prop } from 'nuxt-property-decorator'
 
 @Component
 export default class YrForm extends Vue {
