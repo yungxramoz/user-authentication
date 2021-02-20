@@ -36,9 +36,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { authVuexNamespace } from '../store/auth'
+import { getAuthModule } from '../store'
 
 import FormDefinition from '~/models/form-definition'
+import AuthModule from '../store/auth'
 
 interface Form extends FormDefinition {
   valid: false
@@ -50,7 +51,7 @@ interface Form extends FormDefinition {
 
 @Component
 export default class Login extends Vue {
-  form: Form = {
+  private form: Form = {
     valid: false,
     fields: {
       username: '',
@@ -58,14 +59,19 @@ export default class Login extends Vue {
     },
   }
 
-  @authVuexNamespace.State('isAuthenticated')
-  private isAuthenticated!: boolean
+  private authStore: AuthModule
 
-  @authVuexNamespace.Action('authenticate')
-  private authenticate!: (payload: boolean) => void
+  constructor() {
+    super()
+    this.authStore = getAuthModule(this.$store)
+  }
+
+  get isAuthenticated(): boolean {
+    return this.authStore.isAuthenticated
+  }
 
   login() {
-    this.authenticate(!this.isAuthenticated)
+    this.authStore.login(this.form.fields.username, this.form.fields.password)
   }
 }
 </script>
