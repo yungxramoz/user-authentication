@@ -23,7 +23,7 @@ import { Component } from 'vue-class-decorator'
 import NuxtLink from '../models/nuxt-link'
 
 @Component
-export default class Default extends Vue {
+export default class Authenticated extends Vue {
   private items: NuxtLink[] = [
     {
       icon: 'mdi-home',
@@ -31,9 +31,14 @@ export default class Default extends Vue {
       to: '/',
     },
     {
-      icon: 'mdi-account-circle',
-      title: 'Login',
-      to: '/login',
+      icon: 'mdi-account-group',
+      title: 'Users',
+      to: '/users',
+    },
+    {
+      icon: 'mdi-logout',
+      title: 'Logout',
+      to: '/logout',
     },
   ]
 }
@@ -44,7 +49,7 @@ export default class Default extends Vue {
 .page-leave-active {
   transition-property: opacity;
   transition-timing-function: ease-in-out;
-  transition-duration: 500ms;
+  transition-duration: 300ms;
 }
 
 .page-enter,

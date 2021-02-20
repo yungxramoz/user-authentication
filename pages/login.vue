@@ -39,11 +39,6 @@ import { Component } from 'vue-class-decorator'
 
 import FormDefinition from '~/models/form-definition'
 
-import YrBtn from '../components/atoms/YrBtn.vue'
-import YrTextField from '../components/atoms/YrTextField.vue'
-import YrPasswordField from '../components/molecules/YrPasswordField.vue'
-import YrForm from '../components/templates/YrForm.vue'
-
 interface Form extends FormDefinition {
   valid: false
   fields: {
@@ -52,14 +47,7 @@ interface Form extends FormDefinition {
   }
 }
 
-@Component({
-  components: {
-    YrBtn,
-    YrTextField,
-    YrPasswordField,
-    YrForm,
-  },
-})
+@Component
 export default class Login extends Vue {
   form: Form = {
     valid: false,
