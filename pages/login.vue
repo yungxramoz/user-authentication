@@ -39,14 +39,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { getAuthModule } from '../store'
 
 import FormDefinition from '~/models/form-definition'
-import AuthModule from '../store/auth'
+import AuthModule from '../store/authentication'
+import { HTTPResponse } from '@nuxtjs/auth-next'
+import AuthenticateModel from '~/models/data/AuthenticateModel'
 
 interface Form extends FormDefinition {
   valid: false
-  fields: {
-    username: string
-    password: string
-  }
+  fields: AuthenticateModel
 }
 
 @Component
@@ -56,8 +55,9 @@ export default class Login extends Vue {
     fields: {
       username: '',
       password: '',
-    },
+    } as AuthenticateModel,
   }
+  auth!: true
 
   private authStore: AuthModule
 
@@ -71,7 +71,7 @@ export default class Login extends Vue {
   }
 
   login() {
-    this.authStore.login(this.form.fields.username, this.form.fields.password)
+    this.authStore.login(this.form.fields)
   }
 }
 </script>
