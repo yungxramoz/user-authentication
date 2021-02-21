@@ -21,26 +21,37 @@
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
 import NuxtLink from '../models/nuxt-link'
+import { AuthenticationStore } from '~/store'
 
 @Component
 export default class Authenticated extends Vue {
-  private items: NuxtLink[] = [
-    {
-      icon: 'mdi-home',
-      title: 'Home',
-      to: '/',
-    },
-    {
-      icon: 'mdi-account-group',
-      title: 'Users',
-      to: '/users',
-    },
-    {
-      icon: 'mdi-logout',
-      title: 'Logout',
-      to: '/logout',
-    },
-  ]
+  private items?: NuxtLink[]
+  private authStore = AuthenticationStore
+
+  beforeMount() {
+    this.items = [
+      {
+        icon: 'mdi-home',
+        title: 'Home',
+        to: '/',
+      } as NuxtLink,
+      {
+        icon: 'mdi-account-group',
+        title: 'Users',
+        to: '/users',
+      } as NuxtLink,
+      {
+        icon: 'mdi-account-circle',
+        title: this.authStore.userFullName,
+        to: '/profile',
+      } as NuxtLink,
+      {
+        icon: 'mdi-logout',
+        title: 'Logout',
+        to: '/logout',
+      } as NuxtLink,
+    ]
+  }
 }
 </script>
 

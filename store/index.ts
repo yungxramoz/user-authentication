@@ -1,7 +1,7 @@
 import { Store } from 'vuex'
-import { getModule } from 'nuxt-property-decorator'
-import AuthStoreModule from './authentication'
+import { initialiseStores } from '~/helpers/store-accessor'
 
-export function getAuthModule(store: Store<any>): AuthStoreModule {
-  return getModule(AuthStoreModule, store)
-}
+const initializer = (store: Store<any>) => initialiseStores(store)
+
+export const plugins = [initializer]
+export * from '~/helpers/store-accessor'

@@ -4,9 +4,9 @@ import {
   VuexAction,
   VuexMutation,
 } from 'nuxt-property-decorator'
-
 import { AxiosResponse } from 'axios'
-import { $axios } from '~/helpers/api'
+
+import { $axios } from '~/helpers/api-accessor'
 import UserModel from '~/models/data/UserModel'
 import AuthenticateModel from '~/models/data/AuthenticateModel'
 
@@ -20,13 +20,17 @@ interface AuthState {
   namespaced: true,
   stateFactory: true,
 })
-class AuthStoreModule extends VuexModule {
+class AuthenticationModule extends VuexModule {
   public authState: AuthState = {
     isAuthenticated: false,
   }
 
   get isAuthenticated(): boolean {
     return this.authState.isAuthenticated
+  }
+
+  get userFullName(): string {
+    return `${this.authState.user?.firstname} ${this.authState.user?.lastname}`
   }
 
   @VuexAction
@@ -46,4 +50,4 @@ class AuthStoreModule extends VuexModule {
   }
 }
 
-export default AuthStoreModule
+export default AuthenticationModule

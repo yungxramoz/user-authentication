@@ -36,11 +36,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { getAuthModule } from '../store'
+
+import { AuthenticationStore } from '~/store'
 
 import FormDefinition from '~/models/form-definition'
-import AuthModule from '../store/authentication'
-import { HTTPResponse } from '@nuxtjs/auth-next'
 import AuthenticateModel from '~/models/data/AuthenticateModel'
 
 interface Form extends FormDefinition {
@@ -57,13 +56,13 @@ export default class Login extends Vue {
       password: '',
     } as AuthenticateModel,
   }
-  auth!: true
 
-  private authStore: AuthModule
+  private authStore = AuthenticationStore
 
   constructor() {
     super()
-    this.authStore = getAuthModule(this.$store)
+    const layout = this.authStore.isAuthenticated ? 'authenticated' : 'default'
+    this.$nuxt.setLayout(layout)
   }
 
   get isAuthenticated(): boolean {
