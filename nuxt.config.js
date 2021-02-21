@@ -44,6 +44,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
+    '@nuxtjs/auth-next',
     '@nuxtjs/axios',
   ],
 
@@ -74,4 +75,26 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/login',
+      home: '/users',
+    },
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          type: 'Bearer',
+        },
+        endpoints: {
+          login: { url: '/user/authenticate', method: 'post' },
+          user: false,
+          logout: false,
+        },
+      },
+    },
+  },
 }

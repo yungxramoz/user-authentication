@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <yr-nuxt-navigtion-bar :items="items" />
+    <yr-nuxt-navigtion-bar :items="navItems" />
 
     <v-main>
       <v-container>
@@ -20,7 +20,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component } from 'nuxt-property-decorator'
-import NuxtLink from '../models/nuxt-link'
+import NuxtLink from '~/models/nuxt-link'
+import UserModel from '~/models/data/UserModel'
 
 @Component
 export default class Default extends Vue {
@@ -36,6 +37,34 @@ export default class Default extends Vue {
       to: '/login',
     },
   ]
+
+  get navItems() {
+    if (this.$auth.loggedIn) {
+      return [
+        {
+          icon: 'mdi-account-group',
+          title: 'Users',
+          to: '/users',
+        } as NuxtLink,
+        {
+          icon: 'mdi-account-circle',
+          title: `${this.user.firstname} ${this.user.lastname}`,
+          to: '/profile',
+        } as NuxtLink,
+        {
+          icon: 'mdi-logout',
+          title: 'Logout',
+          to: '/logout',
+        } as NuxtLink,
+      ]
+    } else {
+      return this.items
+    }
+  }
+
+  get user(): UserModel {
+    return this.$auth.$storage.getUniversal('user') as UserModel
+  }
 }
 </script>
 

@@ -24,7 +24,6 @@
     </template>
 
     <template #footer>
-      <span>{{ isAuthenticated }}</span>
       <v-spacer></v-spacer>
       <span class="caption"
         >Don't have an account yet?
@@ -37,10 +36,9 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AuthenticationStore } from '~/store'
-
 import FormDefinition from '~/models/form-definition'
 import AuthenticateModel from '~/models/data/AuthenticateModel'
+import UserModel from '~/models/data/UserModel'
 
 interface Form extends FormDefinition {
   valid: false
@@ -57,20 +55,22 @@ export default class Login extends Vue {
     } as AuthenticateModel,
   }
 
-  private authStore = AuthenticationStore
-
-  constructor() {
-    super()
-    const layout = this.authStore.isAuthenticated ? 'authenticated' : 'default'
-    this.$nuxt.setLayout(layout)
-  }
-
-  get isAuthenticated(): boolean {
-    return this.authStore.isAuthenticated
-  }
-
-  login() {
-    this.authStore.login(this.form.fields)
+  async login() {
+    // this.authStore.login(this.form.fields)
+    await this.$auth
+      .loginWith('local', {
+        data: this.form.fields,
+      })
+      .then((res) => {
+        // @ts-ignore
+        const user = res.data as UserModel
+        this.$auth.setUser(user)
+        this.$auth.$storage.setUniversal('user', user)
+        console.log(this.$auth.$storage.getUniversal('user'))
+      })
+      .catch((err) => {
+        console.error(err.response)
+      })
   }
 }
 </script>
