@@ -18,6 +18,7 @@ export default class Logout extends Vue {
   mounted() {
     this.$auth.$storage.removeUniversal('user')
     this.$auth.logout()
+    this.$router.push('/')
   }
 }
 </script>
