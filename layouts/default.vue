@@ -48,7 +48,7 @@ export default class Default extends Vue {
         } as NuxtLink,
         {
           icon: 'mdi-account-circle',
-          title: `${this.user.firstname} ${this.user.lastname}`,
+          title: 'Profile',
           to: '/profile',
         } as NuxtLink,
         {

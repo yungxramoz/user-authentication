@@ -1,7 +1,7 @@
 <template>
   <yr-nuxt-tab :to="item.to">
-    <yr-icon left>{{ item.icon }}</yr-icon>
     {{ item.title }}
+    <yr-icon>{{ item.icon }}</yr-icon>
   </yr-nuxt-tab>
 </template>
 
