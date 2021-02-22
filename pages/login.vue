@@ -1,7 +1,7 @@
 <template>
   <yr-form title="Login">
     <template #form>
-      <v-form>
+      <v-form lazy-validation v-model="form.valid">
         <yr-text-field
           v-model="form.fields.username"
           name="username"
@@ -56,7 +56,6 @@ export default class Login extends Vue {
   }
 
   async login() {
-    // this.authStore.login(this.form.fields)
     await this.$auth
       .loginWith('local', {
         data: this.form.fields,
@@ -67,6 +66,7 @@ export default class Login extends Vue {
         this.$auth.setUser(user)
         this.$auth.$storage.setUniversal('user', user)
         console.log(this.$auth.$storage.getUniversal('user'))
+        this.$router.push('/users')
       })
       .catch((err) => {
         console.error(err.response)
